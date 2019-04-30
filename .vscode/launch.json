@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:chooseExecutable}",
+            // *** Uncomment this and comment above to allow to pick an executable: ***
+            // "program": "${input:pickExecutable}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${command:extension.vscode-wsl-workspaceFolder}",
+            "environment": [],
+            "externalConsole": false, // external console is currently not possible with WSL :(
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "c:\\windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "${command:extension.vscode-wsl-workspaceFolder}": "${workspaceFolder}"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "chooseExecutable",
+            "description": "executable",
+            "type": "promptString"
+        },
+        {
+            "id": "pickExecutable",
+            "description": "executable",
+            "options": [
+                // *** Add options here ***
+            ],
+            "type": "pickString"
+        }
+    ]
+}

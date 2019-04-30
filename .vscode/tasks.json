@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "c:\\windows\\sysnative\\bash.exe",
+                "args": [
+                    "-c"
+                ]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make ${input:chooseTarget}",
+            // Uncomment this and comment above to pick target:
+            // "command": "make ${input:pickTarget}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "chooseTarget",
+            "description": "target",
+            "default": "all",
+            "type": "promptString"
+        },
+        {
+            "id": "pickTarget",
+            "description": "target",
+            "default": "all",
+            "options": [
+                "all",
+                "clean",
+                // *** Add options here ***
+            ],
+            "type": "pickString"
+        }
+    ]
+}
